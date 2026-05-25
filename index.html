@@ -5,893 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Best Drawing Classes in Chromepet | Create Art Academy</title>
 <meta name="description" content="Premium Drawing, Painting, Calligraphy & Abacus Classes in Chromepet. Summer 2026 batch enrolling now. Limited seats."/>
-<link rel="icon" href="image/1.png"/>
+<link rel="icon" href="1.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-  /* ─── RESET & TOKENS ─── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --ink:       #0f0c0a;
-    --cream:     #faf7f2;
-    --warm:      #f2ece2;
-    --gold:      #b8863b;
-    --gold-lt:   #d4a85a;
-    --rust:      #8b3a2f;
-    --sage:      #6b7c65;
-    --white:     #ffffff;
-    --serif:     'Cormorant Garamond', Georgia, serif;
-    --sans:      'DM Sans', sans-serif;
-    --ease:      cubic-bezier(.25,.46,.45,.94);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--sans);
-    background: var(--cream);
-    color: var(--ink);
-    overflow-x: hidden;
-  }
-
-  img { display: block; max-width: 100%; }
-  a { text-decoration: none; color: inherit; }
-
-  /* ─── NOISE TEXTURE OVERLAY ─── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.025;
-    pointer-events: none;
-    z-index: 9999;
-  }
-
-  /* ─── BUTTONS ─── */
-  .btn-gold {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    padding: .85rem 2.2rem;
-    background: var(--gold);
-    color: var(--white);
-    font-family: var(--sans);
-    font-size: .85rem;
-    font-weight: 500;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: background .3s var(--ease), transform .2s var(--ease);
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-  }
-  .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); }
-
-  .btn-outline {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    padding: .8rem 2rem;
-    border: 1px solid var(--ink);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: .85rem;
-    font-weight: 500;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    transition: background .3s, color .3s;
-  }
-  .btn-outline:hover { background: var(--ink); color: var(--cream); }
-
-  .btn-outline-white {
-    display: inline-flex;
-    align-items: center;
-    padding: .8rem 2.2rem;
-    border: 1px solid rgba(255,255,255,.5);
-    color: var(--white);
-    font-family: var(--sans);
-    font-size: .85rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    transition: background .3s, border-color .3s;
-  }
-  .btn-outline-white:hover { background: rgba(255,255,255,.12); border-color: var(--white); }
-
-  /* ─── SECTION LABELS ─── */
-  .label {
-    display: inline-block;
-    font-family: var(--sans);
-    font-size: .72rem;
-    font-weight: 500;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    font-weight: 600;
-    line-height: 1.1;
-    color: var(--ink);
-  }
-
-  /* ─── NAVBAR ─── */
-  .nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background .4s, backdrop-filter .4s, padding .4s;
-  }
-  .nav.scrolled {
-    background: rgba(250,247,242,.92);
-    backdrop-filter: blur(12px);
-    padding: .9rem 3rem;
-    border-bottom: 1px solid rgba(184,134,59,.15);
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: .8rem;
-  }
-  .logo img {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-    border-radius: 50%;
-    border: 1px solid var(--gold);
-    padding: 2px;
-  }
-  .logo-text h3 {
-    font-family: var(--serif);
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--ink);
-  }
-  .logo-text span {
-    font-size: .68rem;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: .82rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--ink);
-    position: relative;
-    transition: color .3s;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0;
-    width: 0; height: 1px;
-    background: var(--gold);
-    transition: width .3s var(--ease);
-  }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-  .nav-links a.active { color: var(--gold); }
-
-  .burger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-  }
-  .burger span {
-    display: block;
-    width: 24px;
-    height: 1.5px;
-    background: var(--ink);
-    transition: all .3s;
-  }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10rem 5rem 6rem 8rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: .6rem;
-    font-size: .75rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp .8s var(--ease) .2s forwards;
-  }
-  .hero-badge::before {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 1px;
-    background: var(--rust);
-  }
-
-  .hero-title {
-    font-family: var(--serif);
-    font-size: clamp(3.5rem, 6.5vw, 6rem);
-    font-weight: 600;
-    line-height: 1.0;
-    color: var(--ink);
-    margin-bottom: 1.8rem;
-    opacity: 0;
-    animation: fadeUp .9s var(--ease) .4s forwards;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .hero-title .outline-text {
-    -webkit-text-stroke: 1.5px var(--ink);
-    color: transparent;
-  }
-
-  .hero-desc {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #5a544e;
-    max-width: 420px;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp .9s var(--ease) .6s forwards;
-  }
-
-  .hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-    opacity: 0;
-    animation: fadeUp .9s var(--ease) .8s forwards;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-    opacity: 0;
-    animation: fadeUp .9s var(--ease) 1s forwards;
-  }
-  .stat-item strong {
-    display: block;
-    font-family: var(--serif);
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1;
-  }
-  .stat-item span {
-    font-size: .72rem;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: #8a8078;
-    margin-top: .3rem;
-  }
-  .stat-divider {
-    width: 1px;
-    height: 40px;
-    background: rgba(15,12,10,.15);
-    align-self: center;
-  }
-
-  /* HERO RIGHT / IMAGE PANEL */
-  .hero-right {
-    position: relative;
-    background: var(--ink);
-    overflow: hidden;
-  }
-  .hero-right::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #1a1208 0%, #0f0c0a 100%);
-    z-index: 0;
-  }
-  .hero-main-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: .55;
-    mix-blend-mode: luminosity;
-    animation: slowZoom 12s var(--ease) infinite alternate;
-  }
-  @keyframes slowZoom {
-    from { transform: scale(1); }
-    to   { transform: scale(1.06); }
-  }
-
-  .hero-right-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(250,247,242,.18) 0%, transparent 40%),
-                linear-gradient(to top, rgba(15,12,10,.7) 0%, transparent 50%);
-    z-index: 1;
-  }
-
-  .hero-right-content {
-    position: absolute;
-    bottom: 3rem;
-    left: 3rem;
-    right: 3rem;
-    z-index: 2;
-    opacity: 0;
-    animation: fadeUp .9s var(--ease) 1.2s forwards;
-  }
-  .hero-right-content p {
-    font-family: var(--serif);
-    font-size: 1.6rem;
-    font-style: italic;
-    color: rgba(255,255,255,.85);
-    line-height: 1.4;
-  }
-  .hero-right-content cite {
-    display: block;
-    font-style: normal;
-    font-size: .75rem;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--gold-lt);
-    margin-top: .8rem;
-  }
-
-  /* Decorative large number */
-  .hero-year {
-    position: absolute;
-    top: 2rem;
-    right: 2.5rem;
-    font-family: var(--serif);
-    font-size: 9rem;
-    font-weight: 700;
-    color: rgba(255,255,255,.04);
-    z-index: 1;
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  /* Floating card */
-  .hero-float-card {
-    position: absolute;
-    top: 2.5rem;
-    left: -2rem;
-    background: var(--cream);
-    border: 1px solid rgba(184,134,59,.25);
-    padding: 1.2rem 1.5rem;
-    z-index: 3;
-    opacity: 0;
-    animation: slideIn .8s var(--ease) 1.4s forwards;
-    box-shadow: 0 20px 60px rgba(0,0,0,.15);
-  }
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-20px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .hero-float-card p {
-    font-size: .7rem;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: .4rem;
-  }
-  .hero-float-card strong {
-    font-family: var(--serif);
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  /* ─── SCROLL INDICATOR ─── */
-  .scroll-indicator {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .5rem;
-    opacity: 0;
-    animation: fadeIn 1s var(--ease) 2s forwards;
-    z-index: 10;
-  }
-  .scroll-indicator span {
-    font-size: .65rem;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: #8a8078;
-  }
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: .3; }
-    50%       { opacity: 1; }
-  }
-
-  /* ─── MARQUEE STRIP ─── */
-  .marquee-strip {
-    background: var(--ink);
-    padding: 1.1rem 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .marquee-track {
-    display: inline-flex;
-    animation: marquee 22s linear infinite;
-  }
-  .marquee-track span {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1rem;
-    color: rgba(255,255,255,.5);
-    padding: 0 2.5rem;
-  }
-  .marquee-track span.gold { color: var(--gold-lt); font-style: normal; font-size: .75rem; letter-spacing: .1em; }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-
-  /* ─── ABOUT ─── */
-  .about {
-    padding: 9rem 8rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 7rem;
-    align-items: center;
-    position: relative;
-  }
-  .about::before {
-    content: 'Art';
-    position: absolute;
-    top: -1rem;
-    left: 5rem;
-    font-family: var(--serif);
-    font-size: 14rem;
-    font-weight: 700;
-    color: rgba(184,134,59,.04);
-    pointer-events: none;
-    line-height: 1;
-  }
-
-  .about-visual {
-    position: relative;
-  }
-  .about-img-main {
-    width: 100%;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-    border: 1px solid rgba(184,134,59,.2);
-  }
-  .about-img-accent {
-    position: absolute;
-    bottom: -3rem;
-    right: -3rem;
-    width: 55%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border: 4px solid var(--cream);
-    box-shadow: 0 30px 80px rgba(0,0,0,.12);
-  }
-  .about-badge-box {
-    position: absolute;
-    top: 2rem;
-    left: -2rem;
-    background: var(--gold);
-    color: var(--white);
-    padding: 1.4rem 1.8rem;
-    text-align: center;
-  }
-  .about-badge-box strong {
-    display: block;
-    font-family: var(--serif);
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-  .about-badge-box span {
-    font-size: .68rem;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    opacity: .85;
-  }
-
-  .about-content { padding-top: 2rem; }
-  .about-content h2 { margin-bottom: 1.5rem; }
-  .about-content p {
-    font-size: .97rem;
-    line-height: 1.9;
-    color: #5a544e;
-    margin-bottom: 2.5rem;
-  }
-  .about-points {
-    display: flex;
-    flex-direction: column;
-    gap: .9rem;
-    margin-bottom: 2.5rem;
-  }
-  .about-point {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: .9rem;
-    color: var(--ink);
-  }
-  .about-point::before {
-    content: '';
-    width: 20px;
-    height: 1px;
-    background: var(--gold);
-    flex-shrink: 0;
-  }
-
-  /* ─── COURSES ─── */
-  .courses {
-    padding: 7rem 8rem;
-    background: var(--warm);
-    position: relative;
-    overflow: hidden;
-  }
-  .courses-head {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-  .courses-head h2 { margin-bottom: .8rem; }
-  .courses-head p {
-    font-size: .95rem;
-    color: #7a746e;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .course-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5px;
-  }
-
-  .course-card {
-    position: relative;
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .course-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .7s var(--ease);
-    filter: brightness(.75) saturate(.6);
-  }
-  .course-card:hover img {
-    transform: scale(1.08);
-    filter: brightness(.5) saturate(.4);
-  }
-  .course-card-body {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 2.5rem 1.8rem;
-    background: linear-gradient(to top, rgba(15,12,10,.92) 0%, transparent 100%);
-    transform: translateY(1rem);
-    transition: transform .4s var(--ease);
-  }
-  .course-card:hover .course-card-body { transform: translateY(0); }
-
-  .course-num {
-    display: block;
-    font-size: .7rem;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--gold-lt);
-    margin-bottom: .6rem;
-  }
-  .course-card-body h3 {
-    font-family: var(--serif);
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: .6rem;
-  }
-  .course-card-body p {
-    font-size: .83rem;
-    color: rgba(255,255,255,.65);
-    line-height: 1.6;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .4s var(--ease);
-  }
-  .course-card:hover .course-card-body p { max-height: 80px; }
-  .course-arrow {
-    display: inline-flex;
-    align-items: center;
-    gap: .4rem;
-    font-size: .72rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--gold-lt);
-    margin-top: 1rem;
-    opacity: 0;
-    transition: opacity .4s var(--ease);
-  }
-  .course-card:hover .course-arrow { opacity: 1; }
-
-  /* ─── GALLERY ─── */
-  .gallery {
-    padding: 7rem 8rem;
-    background: var(--ink);
-  }
-  .gallery-head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-  }
-  .gallery-head .label { color: var(--gold-lt); }
-  .gallery-head h2 { color: var(--white); }
-
-  .gallery-mosaic {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 260px 260px;
-    gap: 6px;
-  }
-  .gallery-mosaic .g-item {
-    overflow: hidden;
-    position: relative;
-  }
-  .gallery-mosaic .g-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .6s var(--ease), filter .6s var(--ease);
-    filter: sepia(.3) brightness(.85);
-  }
-  .gallery-mosaic .g-item:hover img {
-    transform: scale(1.06);
-    filter: sepia(0) brightness(1);
-  }
-  .gallery-mosaic .g-item:first-child {
-    grid-row: span 2;
-  }
-
-  .gallery-footer {
-    text-align: center;
-    margin-top: 3rem;
-  }
-
-  /* ─── TESTIMONIAL / CTA HYBRID ─── */
-  .cta-section {
-    position: relative;
-    padding: 7rem 8rem;
-    background: var(--warm);
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-  .cta-section::after {
-    content: '';
-    position: absolute;
-    right: -8rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40rem;
-    height: 40rem;
-    border-radius: 50%;
-    border: 1px solid rgba(184,134,59,.1);
-    pointer-events: none;
-  }
-
-  .cta-quote {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--ink);
-  }
-  .cta-quote em { font-style: italic; color: var(--gold); }
-
-  .cta-right p {
-    font-size: .97rem;
-    line-height: 1.85;
-    color: #5a544e;
-    margin-bottom: 2rem;
-  }
-  .seats-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: .8rem;
-    background: rgba(184,134,59,.1);
-    border: 1px solid rgba(184,134,59,.25);
-    padding: .7rem 1.2rem;
-    margin-bottom: 2rem;
-  }
-  .seats-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--rust);
-    animation: blink 1.5s ease-in-out infinite;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: .2; }
-  }
-  .seats-badge span {
-    font-size: .75rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--rust);
-  }
-
-  /* ─── FOOTER ─── */
-  .footer {
-    background: var(--ink);
-    color: rgba(255,255,255,.65);
-    padding: 5rem 8rem 2rem;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(255,255,255,.08);
-  }
-  .footer-brand img {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    border-radius: 50%;
-    border: 1px solid rgba(184,134,59,.4);
-    padding: 2px;
-    margin-bottom: 1rem;
-  }
-  .footer-brand h3 {
-    font-family: var(--serif);
-    font-size: 1.3rem;
-    color: var(--white);
-    margin-bottom: .3rem;
-  }
-  .footer-brand p {
-    font-size: .85rem;
-    line-height: 1.8;
-    max-width: 240px;
-  }
-  .footer-col h4 {
-    font-family: var(--sans);
-    font-size: .72rem;
-    font-weight: 500;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--gold-lt);
-    margin-bottom: 1.5rem;
-  }
-  .footer-col a, .footer-col p {
-    display: block;
-    font-size: .88rem;
-    color: rgba(255,255,255,.55);
-    margin-bottom: .75rem;
-    transition: color .3s;
-    line-height: 1.6;
-  }
-  .footer-col a:hover { color: var(--gold-lt); }
-  .footer-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: .78rem;
-    color: rgba(255,255,255,.3);
-    letter-spacing: .05em;
-  }
-  .footer-bottom a { color: var(--gold); font-size: .78rem; }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity .8s var(--ease), transform .8s var(--ease);
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 1100px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 9rem 3rem 4rem; }
-    .hero-right { height: 60vw; }
-    .about { grid-template-columns: 1fr; padding: 6rem 3rem; gap: 5rem; }
-    .about::before { display: none; }
-    .about-img-accent { right: -1rem; bottom: -1.5rem; }
-    .courses { padding: 5rem 3rem; }
-    .course-grid { grid-template-columns: 1fr 1fr; }
-    .gallery { padding: 5rem 3rem; }
-    .gallery-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .gallery-mosaic .g-item:first-child { grid-row: span 1; }
-    .cta-section { grid-template-columns: 1fr; padding: 5rem 3rem; }
-    .footer { padding: 4rem 3rem 2rem; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    .nav { padding: 1.2rem 2rem; }
-    .nav.scrolled { padding: .9rem 2rem; }
-  }
-
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .nav .btn-gold { display: none; }
-    .burger { display: flex; }
-    .hero-left { padding: 8rem 1.5rem 3rem; }
-    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
-    .course-grid { grid-template-columns: 1fr; }
-    .gallery-mosaic { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ─── NAVBAR ─── -->
 <header class="nav" id="nav">
   <a href="index.html" class="logo">
-    <img src="image/1.png" alt="Create Art Academy">
+    <img src="1.png" alt="Create Art Academy">
     <div class="logo-text">
       <h3>Create Art</h3>
       <span>Academy</span>
     </div>
   </a>
-
   <ul class="nav-links">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="about.html">About</a></li>
@@ -899,318 +26,127 @@
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-
   <a href="contact.html" class="btn-gold">Enroll Now</a>
-
   <div class="burger" id="burger">
     <span></span><span></span><span></span>
   </div>
 </header>
 
-
-<!-- ─── HERO (UPDATED: RELEVANT ENROLLMENT MESSAGING) ─── -->
 <section class="hero">
-
   <div class="hero-left">
     <div class="hero-badge">Summer 2026 Batch — Enrollments Open | Chromepet</div>
-
-    <h1 class="hero-title">
-      Build <em>Creativity.</em><br>
-      <span class="outline-text">Master</span> Art.
-    </h1>
-
-    <p class="hero-desc">
-      A premium art academy where students develop creativity, confidence,
-      and lifelong artistic mastery — beyond just drawing.
-    </p>
-
+    <h1 class="hero-title">Build <em>Creativity.</em><br><span class="outline-text">Master</span> Art.</h1>
+    <p class="hero-desc">A premium art academy where students develop creativity, confidence, and lifelong artistic mastery — beyond just drawing.</p>
     <div class="hero-actions">
       <a href="contact.html" class="btn-gold">Start Learning</a>
-      <a href="courses.html" class="btn-outline">View Courses &rarr;</a>
+      <a href="courses.html" class="btn-outline">View Courses →</a>
     </div>
-
     <div class="hero-stats">
-      <div class="stat-item">
-        <strong>500+</strong>
-        <span>Students</span>
-      </div>
+      <div class="stat-item"><strong>500+</strong><span>Students</span></div>
       <div class="stat-divider"></div>
-      <div class="stat-item">
-        <strong>10+</strong>
-        <span>Years</span>
-      </div>
+      <div class="stat-item"><strong>10+</strong><span>Years</span></div>
       <div class="stat-divider"></div>
-      <div class="stat-item">
-        <strong>4</strong>
-        <span>Courses</span>
-      </div>
+      <div class="stat-item"><strong>4</strong><span>Courses</span></div>
     </div>
   </div>
-
   <div class="hero-right">
-    <img class="hero-main-img" src="image/2.png" alt="Student artwork">
+    <img class="hero-main-img" src="23.png" alt="Student artwork">
     <div class="hero-right-overlay"></div>
     <div class="hero-year">2015</div>
-
-    <!-- UPDATED FLOATING CARD: SPECIFIC SUMMER BATCH INFO -->
-    <div class="hero-float-card">
-      <p>Summer 2026 Batch</p>
-      <strong>Starts May 5th</strong>
-    </div>
-
-    <div class="hero-right-content">
-      <p>"Art is not what you see,<br>but what you make others see."</p>
-      <cite>— Edgar Degas</cite>
-    </div>
+    <div class="hero-float-card"><p>Summer 2026 Batch</p><strong>Starts May 5th</strong></div>
+    <div class="hero-right-content"><p>"Art is not what you see,<br>but what you make others see."</p><cite>— Edgar Degas</cite></div>
   </div>
-
-  <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-
 </section>
 
-
-<!-- ─── MARQUEE ─── -->
 <div class="marquee-strip" aria-hidden="true">
   <div class="marquee-track">
-    <span>Drawing</span><span class="gold">✦</span>
-    <span>Painting</span><span class="gold">✦</span>
-    <span>Calligraphy</span><span class="gold">✦</span>
-    <span>Abacus</span><span class="gold">✦</span>
-    <span>Creative Learning</span><span class="gold">✦</span>
-    <span>Expert Trainers</span><span class="gold">✦</span>
-    <span>Competition Ready</span><span class="gold">✦</span>
-    <span>Drawing</span><span class="gold">✦</span>
-    <span>Painting</span><span class="gold">✦</span>
-    <span>Calligraphy</span><span class="gold">✦</span>
-    <span>Abacus</span><span class="gold">✦</span>
-    <span>Creative Learning</span><span class="gold">✦</span>
-    <span>Expert Trainers</span><span class="gold">✦</span>
-    <span>Competition Ready</span><span class="gold">✦</span>
+    <span>Drawing</span><span class="gold">✦</span><span>Painting</span><span class="gold">✦</span><span>Calligraphy</span><span class="gold">✦</span>
+    <span>Abacus</span><span class="gold">✦</span><span>Creative Learning</span><span class="gold">✦</span><span>Expert Trainers</span><span class="gold">✦</span>
+    <span>Competition Ready</span><span class="gold">✦</span><span>Drawing</span><span class="gold">✦</span><span>Painting</span><span class="gold">✦</span>
+    <span>Calligraphy</span><span class="gold">✦</span><span>Abacus</span><span class="gold">✦</span><span>Creative Learning</span><span class="gold">✦</span>
+    <span>Expert Trainers</span><span class="gold">✦</span><span>Competition Ready</span><span class="gold">✦</span>
   </div>
 </div>
 
-
-<!-- ─── ABOUT ─── -->
 <section class="about">
-
   <div class="about-visual reveal">
-    <img class="about-img-main" src="image/4.png" alt="Academy classroom">
-    <img class="about-img-accent" src="image/3.png" alt="Student artwork">
-    <div class="about-badge-box">
-      <strong>10+</strong>
-      <span>Years of<br>Excellence</span>
-    </div>
+    <img class="about-img-main" src="4.png" alt="Academy classroom">
+    <img class="about-img-accent" src="22.png" alt="Student artwork">
+    <div class="about-badge-box"><strong>10+</strong><span>Years of<br>Excellence</span></div>
   </div>
-
   <div class="about-content reveal">
     <span class="label">About the Academy</span>
     <h2 class="section-title">Where Talent<br>Meets <em style="font-style:italic;color:var(--gold)">Guidance</em></h2>
-    <p>
-      At Create Art Academy, we believe every child carries an artist within.
-      Our structured programs combine classical technique with contemporary
-      creative expression — nurturing not just skill, but artistic vision.
-    </p>
+    <p>At Create Art Academy, we believe every child carries an artist within. Our structured programs combine classical technique with contemporary creative expression — nurturing not just skill, but artistic vision.</p>
     <div class="about-points">
       <div class="about-point">Expert, experienced trainers</div>
       <div class="about-point">Step-by-step progressive curriculum</div>
       <div class="about-point">Competition & exhibition preparation</div>
       <div class="about-point">Small batch sizes for personal attention</div>
     </div>
-    <a href="about.html" class="btn-outline">Discover More &rarr;</a>
+    <a href="about.html" class="btn-outline">Discover More →</a>
   </div>
-
 </section>
 
-
-<!-- ─── COURSES ─── -->
 <section class="courses">
-
   <div class="courses-head reveal">
     <span class="label">Our Programmes</span>
     <h2 class="section-title">Designed for<br>Real Skill Growth</h2>
     <p>Four disciplines. One goal: unlock your child's creative potential.</p>
   </div>
-
   <div class="course-grid">
-
-    <a href="D:\art class website\drawing.html" class="course-card reveal">
-      <img src="image/5.png" alt="Drawing class">
-      <div class="course-card-body">
-        <span class="course-num">01</span>
-        <h3>Drawing</h3>
-        <p>Strong fundamentals to advanced techniques in pencil, charcoal & more.</p>
-        <span class="course-arrow">Explore &rarr;</span>
-      </div>
+    <a href="drawing.html" class="course-card reveal">
+      <img src="5.png" alt="Drawing class">
+      <div class="course-card-body"><span class="course-num">01</span><h3>Drawing</h3><p>Strong fundamentals to advanced techniques in pencil, charcoal & more.</p><span class="course-arrow">Explore →</span></div>
     </a>
-
     <a href="painting.html" class="course-card reveal">
-      <img src="image/6.png" alt="Painting class">
-      <div class="course-card-body">
-        <span class="course-num">02</span>
-        <h3>Painting</h3>
-        <p>Watercolour, acrylic & oil painting mastery from beginner to advanced.</p>
-        <span class="course-arrow">Explore &rarr;</span>
-      </div>
+      <img src="6.png" alt="Painting class">
+      <div class="course-card-body"><span class="course-num">02</span><h3>Painting</h3><p>Watercolour, acrylic & oil painting mastery from beginner to advanced.</p><span class="course-arrow">Explore →</span></div>
     </a>
-
-    <a href="D:\art class website\caligraphy.html" class="course-card reveal">
-      <img src="image/7.png" alt="Calligraphy class">
-      <div class="course-card-body">
-        <span class="course-num">03</span>
-        <h3>Calligraphy</h3>
-        <p>Beautiful handwriting, modern lettering & creative script design.</p>
-        <span class="course-arrow">Explore &rarr;</span>
-      </div>
+    <a href="calligraphy.html" class="course-card reveal">
+      <img src="7.png" alt="Calligraphy class">
+      <div class="course-card-body"><span class="course-num">03</span><h3>Calligraphy</h3><p>Beautiful handwriting, modern lettering & creative script design.</p><span class="course-arrow">Explore →</span></div>
     </a>
-
-    <a href="D:\art class website\abacus.html" class="course-card reveal">
-      <img src="image/8.png" alt="Abacus class">
-      <div class="course-card-body">
-        <span class="course-num">04</span>
-        <h3>Abacus</h3>
-        <p>Brain development, mental math & concentration through abacus training.</p>
-        <span class="course-arrow">Explore &rarr;</span>
-      </div>
+    <a href="abacus.html" class="course-card reveal">
+      <img src="8.png" alt="Abacus class">
+      <div class="course-card-body"><span class="course-num">04</span><h3>Abacus</h3><p>Brain development, mental math & concentration through abacus training.</p><span class="course-arrow">Explore →</span></div>
     </a>
-
   </div>
-
 </section>
 
-
-<!-- ─── GALLERY ─── -->
 <section class="gallery">
-
   <div class="gallery-head reveal">
-    <div>
-      <span class="label">Gallery</span>
-      <h2 class="section-title" style="color:var(--white)">Student<br><em style="font-style:italic;color:var(--gold)">Creations</em></h2>
-    </div>
-    <a href="gallery.html" class="btn-outline-white">View All &rarr;</a>
+    <div><span class="label">Gallery</span><h2 class="section-title" style="color:var(--white)">Student<br><em style="font-style:italic;color:var(--gold)">Creations</em></h2></div>
+    <a href="gallery.html" class="btn-outline-white">View All →</a>
   </div>
-
   <div class="gallery-mosaic reveal">
-    <div class="g-item"><img src="image/1.png" alt="Student artwork"></div>
-    <div class="g-item"><img src="image/2.png" alt="Student artwork"></div>
-    <div class="g-item"><img src="image/3.png" alt="Student artwork"></div>
-    <div class="g-item"><img src="image/4.png" alt="Student artwork"></div>
-    <div class="g-item"><img src="image/5.png" alt="Student artwork"></div>
+    <div class="g-item"><img src="17.png" alt="Student artwork"></div>
+    <div class="g-item"><img src="18.png" alt="Student artwork"></div>
+    <div class="g-item"><img src="19.png" alt="Student artwork"></div>
+    <div class="g-item"><img src="16.png" alt="Student artwork"></div>
+    <div class="g-item"><img src="22.png" alt="Student artwork"></div>
   </div>
-
 </section>
 
-
-<!-- ─── CTA SECTION (RELEVANT SEATS & BATCH INFO) ─── -->
 <section class="cta-section">
-
-  <div class="cta-left reveal">
-    <p class="cta-quote">
-      Give your child<br>a <em>creative edge</em><br>that lasts a lifetime.
-    </p>
-  </div>
-
+  <div class="cta-left reveal"><p class="cta-quote">Give your child<br>a <em>creative edge</em><br>that lasts a lifetime.</p></div>
   <div class="cta-right reveal">
-    <p>
-      Our academy shapes young minds through the power of art.
-      Every session builds not only skill — but discipline, patience,
-      and the joy of creating something beautiful.
-    </p>
-    <!-- UPDATED: Dynamic summer batch seat reminder -->
-    <div class="seats-badge">
-      <div class="seats-dot"></div>
-      <span>Summer Batch (May 5) — only 6 seats left</span>
-    </div>
-    <br>
-    <a href="contact.html" class="btn-gold">Reserve a Seat &rarr;</a>
+    <p>Our academy shapes young minds through the power of art. Every session builds not only skill — but discipline, patience, and the joy of creating something beautiful.</p>
+    <div class="seats-badge"><div class="seats-dot"></div><span>Summer Batch (May 5) — only 6 seats left</span></div>
+    <br><a href="contact.html" class="btn-gold">Reserve a Seat →</a>
   </div>
-
 </section>
 
-
-<!-- ─── FOOTER ─── -->
 <footer class="footer">
   <div class="footer-grid">
-
-    <div class="footer-brand">
-      <img src="image/1.png" alt="Create Art Academy">
-      <h3>Create Art Academy</h3>
-      <p>Premium art education nurturing creativity and skill in Chromepet, Chennai.</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Navigate</h4>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="courses.html">Courses</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Courses</h4>
-      <a href="D:\art class website\drawing.html">Drawing</a>
-      <a href="painting.html">Painting</a>
-      <a href="D:\art class website\caligraphy.html">Calligraphy</a>
-      <a href="D:\art class website\abacus.html">Abacus</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>+91 95000 00022</p>
-      <p>Chromepet, Chennai<br>Tamil Nadu, India</p>
-      <p style="margin-top:.5rem;">Mon – Sat: 9 AM – 7 PM</p>
-    </div>
-
+    <div class="footer-brand"><img src="1.png" alt="Create Art Academy"><h3>Create Art Academy</h3><p>Premium art education nurturing creativity and skill in Chromepet, Chennai.</p></div>
+    <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Courses</h4><a href="drawing.html">Drawing</a><a href="painting.html">Painting</a><a href="calligraphy.html">Calligraphy</a><a href="abacus.html">Abacus</a></div>
+    <div class="footer-col"><h4>Contact</h4><p>+91 95000 00022</p><p>Chromepet, Chennai<br>Tamil Nadu, India</p><p>Mon – Sat: 9 AM – 7 PM</p></div>
   </div>
-
-  <div class="footer-bottom">
-    <span>© 2025 Create Art Academy. All rights reserved.</span>
-    <a href="contact.html">Enroll Today &rarr;</a>
-  </div>
+  <div class="footer-bottom"><span>© 2025 Create Art Academy. All rights reserved.</span><a href="contact.html">Enroll Today →</a></div>
 </footer>
 
-
-<script>
-  // Navbar scroll effect
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-
-  // Burger menu (mobile)
-  const burger = document.getElementById('burger');
-  const navLinks = document.querySelector('.nav-links');
-  if (burger) {
-    burger.addEventListener('click', () => {
-      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = 'fixed';
-      navLinks.style.top = '70px';
-      navLinks.style.left = '0';
-      navLinks.style.right = '0';
-      navLinks.style.background = 'var(--cream)';
-      navLinks.style.padding = '2rem';
-      navLinks.style.gap = '1.5rem';
-      navLinks.style.zIndex = '99';
-      navLinks.style.borderBottom = '1px solid rgba(184,134,59,.2)';
-    });
-  }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
